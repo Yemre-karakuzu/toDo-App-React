@@ -1,27 +1,49 @@
-import React from 'react'
-
-function FooterIndex() {
+import { useState } from 'react'
+import Todostore from '../../store/store'
+function FooterIndex({todo,addTodo}) {
+	const [activeFilter,setActiveFilter]=useState("all");
+	const filteredActive=()=>{
+		var filterTodo=[...Todostore]
+		setActiveFilter("active");
+		filterTodo=filterTodo.filter((element)=>{
+			 return element.done===false;
+		})
+		console.log(filterTodo);
+		addTodo(filterTodo)
+	}
+	const filteredcompleted=()=>{
+		var filterTodo=[...Todostore]
+		setActiveFilter("completed");
+		filterTodo=filterTodo.filter(element=>{
+			return element.done===true;
+		})
+		addTodo(filterTodo)
+	}
+	const filteredAll=()=>{
+		setActiveFilter("all");
+		addTodo(Todostore) 
+	}
     return (
         <div className="footer">
-            {/* <ul className="filters">
+            <ul className="filters">
 			<li>
-				<a className="[if(activeFilter = 'all', 'selected')]"
-					mv-action="set(activeFilter, 'all')">All</a>
+				<button className={ activeFilter==="all" ? "selected" : "" }
+					onClick={filteredAll}>All</button>
 			</li>
 			<li>
-				<a className="[if(activeFilter = 'active', 'selected')]"
-					mv-action="set(activeFilter, 'active')">Active</a>
+				<button className={ activeFilter==="active" ? "selected" : "" }
+					onClick={filteredActive}>Active</button>
 			</li>
 			<li>
-				<a className="[if(activeFilter = 'completed', 'selected')]"
-					mv-action="set(activeFilter, 'completed')">Completed</a>
+				<button className={ activeFilter==="completed" ? "selected" : "" }
+					onClick={filteredcompleted}> Completed </button>
 			</li>
 		</ul>
         <button hidden="[todoDone = 0]"
 				  className="clear-completed"
 				  mv-action="delete(todo where done)">
 			Clear completed
-		</button> */}
+		</button>
         <footer className="info">
 	        <p>Click to edit a todo</p>
 	        <p>Created by <a href="https://d12n.me/">Dmitry Sharabin</a></p>
