@@ -1,6 +1,6 @@
 
 import "./App.css";
-import ToDoApp from './Components/mainIndex'
+import ToDoApp from './Components/MainIndex'
 function App() {
   return <div className="App">
     <ToDoApp></ToDoApp>
