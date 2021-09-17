@@ -1,10 +1,14 @@
 
 import "./App.css";
-import ToDoApp from './Components/MainIndex'
+import Header from './Components/Header/HeaderIndex'
+import Card from './Components/Cards/CardIndex'
 function App() {
-  return <div className="App">
-    <ToDoApp></ToDoApp>
-  </div>;
+  return (
+    <section className="todoapp">
+      <Header />
+      <Card />
+    </section>
+  )
 }
 
 export default App;
